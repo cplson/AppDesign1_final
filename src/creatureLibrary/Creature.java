@@ -20,6 +20,7 @@ public abstract class Creature {
 	
 	public void displayInfo() {
 	    System.out.println("=== Creature Info ===");
+        System.out.println("Name: " + name);
 	    System.out.println("Can Fly: " + canFly);
 	    System.out.println("Health: " + health);
 	    System.out.println("Speed: " + speed);

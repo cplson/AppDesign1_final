@@ -7,6 +7,8 @@ public class CreatureManager {
 
 	static void main(String[] args) {
         FantasyCreatureSystem creatureSystem = new FantasyCreatureSystem();
+        creatureSystem.loadSampleData();
+
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
 
@@ -52,13 +54,13 @@ public class CreatureManager {
                     break;
 
                 case 3:
-                    System.out.println("You chose: Display Creature");
-                    // TODO: display creature logic
+                    System.out.println("You chose: Display Creatures");
+                    creatureSystem.displayCreatures();
                     break;
 
                 case 4:
                     System.out.println("You chose: Filter by Type");
-                    // TODO: filter logic
+                    creatureSystem.filterByType(scanner);
                     break;
 
                 case 5:

@@ -117,8 +117,16 @@ public class FantasyCreatureSystem {
         }
     }
 
-    // 4. Filter by Element Type
-    public void filterByType(String elementType) {
+    // 4. Filter by Element Type (asks user for input)
+    public void filterByType(Scanner scanner) {
+        if (creatures.isEmpty()) {
+            System.out.println("No creatures in the system.");
+            return;
+        }
+
+        System.out.print("\nEnter the element type to filter by: ");
+        String elementType = scanner.next();
+
         boolean found = false;
         for (Creature c : creatures) {
             if (c.getElementType().equalsIgnoreCase(elementType)) {
@@ -126,10 +134,12 @@ public class FantasyCreatureSystem {
                 found = true;
             }
         }
+
         if (!found) {
             System.out.println("No creatures found with element type: " + elementType);
         }
     }
+
 
     // 5. Show basic statistics (count, optional more later)
     public void showStatistics() {
@@ -150,5 +160,16 @@ public class FantasyCreatureSystem {
     // Optional getter for list (if needed in main)
     public List<Creature> getCreatures() {
         return creatures;
+    }
+
+    public void loadSampleData() {
+        creatures.add(new Hydra("HydraOne", 120, 15, "Water"));
+        creatures.add(new Hydra("HydraTwo", 100, 20, "Fire"));
+        creatures.add(new Basilisk("BasiliskAlpha", 80, 25, "Earth"));
+        creatures.add(new Basilisk("BasiliskBeta", 90, 18, "Poison"));
+        creatures.add(new Golem("GolemRocky", 150, 10, "Earth"));
+        creatures.add(new Golem("GolemClay", 130, 12, "Water"));
+
+        System.out.println("Sample creatures loaded into the system!");
     }
 }
