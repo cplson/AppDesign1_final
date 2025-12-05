@@ -1,0 +1,6 @@
+Hydra,HydraOne,120,15,Water
+Hydra,HydraTwo,100,20,Fire
+Basilisk,BasiliskAlpha,80,25,Earth
+Basilisk,BasiliskBeta,90,18,Poison
+Golem,GolemRocky,150,10,Earth
+Golem,GolemClay,130,12,Water

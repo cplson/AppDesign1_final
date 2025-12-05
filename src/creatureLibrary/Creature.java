@@ -77,6 +77,14 @@ public abstract class Creature {
     public String getName(){
         return this.name;
     }
+
+    public int getSpeed(){
+        return this.speed;
+    }
+
+    public int getHealth(){
+        return this.health;
+    }
 	
 	abstract void move();
 	abstract void makeSound();

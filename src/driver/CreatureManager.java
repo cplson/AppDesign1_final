@@ -65,17 +65,17 @@ public class CreatureManager {
 
                 case 5:
                     System.out.println("You chose: Show Statistics");
-                    // TODO: statistics logic
+                    creatureSystem.showStatistics();
                     break;
 
                 case 6:
                     System.out.println("You chose: Save Data");
-                    // TODO: save logic
+                    creatureSystem.saveData();
                     break;
 
                 case 7:
                     System.out.println("You chose: Load Data");
-                    // TODO: load data logic
+                    creatureSystem.loadData();
                     break;
 
                 case 8:

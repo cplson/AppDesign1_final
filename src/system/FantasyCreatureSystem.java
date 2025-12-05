@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import creatureLibrary.*;
+import system.FileHandler;
 
 public class FantasyCreatureSystem {
 
@@ -141,20 +142,47 @@ public class FantasyCreatureSystem {
     }
 
 
-    // 5. Show basic statistics (count, optional more later)
+    // 5. Show basic statistics
     public void showStatistics() {
-        System.out.println("Total creatures: " + creatures.size());
-        // Optional: add more statistics later (e.g., average health)
-    }
+        if (creatures.isEmpty()) {
+            System.out.println("No creatures in the system.");
+            return;
+        }
 
+        System.out.println("Total creatures: " + creatures.size());
+
+        // Initialize variables
+        int maxSpeed = Integer.MIN_VALUE;
+        String fastestCreatureName = "";
+        int minHealth = Integer.MAX_VALUE;
+        String lowestHealthCreatureName = "";
+
+        // Loop through creatures to find stats
+        for (Creature c : creatures) {
+            if (c.getSpeed() > maxSpeed) {
+                maxSpeed = c.getSpeed();
+                fastestCreatureName = c.getName();
+            }
+
+            if (c.getHealth() < minHealth) {
+                minHealth = c.getHealth();
+                lowestHealthCreatureName = c.getName();
+            }
+        }
+
+        System.out.println("Fastest creature: " + fastestCreatureName + " (Speed: " + maxSpeed + ")");
+        System.out.println("Creature with lowest health: " + lowestHealthCreatureName + " (Health: " + minHealth + ")");
+    }
     // 6. Save Data (placeholder)
     public void saveData() {
-        System.out.println("Saving creatures... (functionality not implemented yet)");
+        System.out.println("Saving creatures...");
+        FileHandler.saveCreatures("creatures.txt", creatures);
     }
 
     // 7. Load Data (placeholder)
     public void loadData() {
-        System.out.println("Loading creatures... (functionality not implemented yet)");
+        System.out.println("Loading creatures...");
+        FileHandler.loadCreatures("creatures.txt", creatures);
     }
 
     // Optional getter for list (if needed in main)
