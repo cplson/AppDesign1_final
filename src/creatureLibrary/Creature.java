@@ -56,7 +56,7 @@ public abstract class Creature {
 			}
 		}
 		
-		if (damageType == elementType) {
+		if (damageType.equals(elementType)) {
 			updatedHealth = updatedHealth - (amount / 2);
 		} else if(isVulnerable) {
 			updatedHealth = updatedHealth - (amount * 2);
@@ -67,6 +67,10 @@ public abstract class Creature {
 		this.health = updatedHealth;
 		return this.health;
 	}
+
+    public String getElementType(){
+        return this.elementType;
+    }
 	
 	abstract void move();
 	abstract void makeSound();
