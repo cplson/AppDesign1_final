@@ -17,54 +17,47 @@ public class FantasyCreatureSystem {
 
     // 1. Add Creature
     public void addCreature(Scanner scanner) {
-        int choice = 0;
+        System.out.print("\nEnter creature name: ");
+        String name = scanner.next();
 
         // Creature type selection
+        int choice = 0;
         while (true) {
             System.out.println("\n--- Select Creature Type ---");
             System.out.println("1. Hydra");
             System.out.println("2. Basilisk");
             System.out.println("3. Golem");
-            System.out.print("Enter choice (1-3): ");
+            System.out.println("4. Wyvern");
+            System.out.print("Enter choice (1-4): ");
 
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
                 scanner.nextLine(); // consume newline
-
-                if (choice >= 1 && choice <= 3) {
-                    break;
-                } else {
-                    System.out.println("Invalid choice. Enter 1, 2, or 3.");
-                }
+                if (choice >= 1 && choice <= 4) break;
+                else System.out.println("Invalid choice. Enter 1, 2, 3, or 4.");
             } else {
                 System.out.println("Invalid input. Enter a number.");
                 scanner.nextLine(); // consume invalid input
             }
         }
 
-        // --- Prompt for creature properties ---
+        // Prompt for properties
         int health = promptForInt(scanner, "Enter health (integer): ");
         int speed = promptForInt(scanner, "Enter speed (integer): ");
         System.out.print("Enter element type (e.g., Fire, Water): ");
         String elementType = scanner.nextLine();
 
-        // --- Create the chosen creature ---
+        // Create creature based on type
         Creature newCreature = null;
-
         switch (choice) {
-            case 1:
-                newCreature = new Hydra(health, speed, elementType);
-                break;
-            case 2:
-                newCreature = new Basilisk(health, speed, elementType);
-                break;
-            case 3:
-                newCreature = new Golem(health, speed, elementType);
-                break;
+            case 1: newCreature = new Hydra(name, health, speed, elementType); break;
+            case 2: newCreature = new Basilisk(name, health, speed, elementType); break;
+            case 3: newCreature = new Golem(name, health, speed, elementType); break;
+            case 4: newCreature = new Wyvern(name, health, speed, elementType); break;
         }
 
         creatures.add(newCreature);
-        System.out.println(newCreature.getClass().getSimpleName() + " added to the system!");
+        System.out.println(newCreature.getClass().getSimpleName() + " named \"" + name + "\" added!");
     }
 
     // Helper method to prompt for integers with validation
@@ -86,12 +79,29 @@ public class FantasyCreatureSystem {
 
 
     // 2. Remove Creature by index (or name, you can adjust)
-    public void removeCreature(int index) {
-        if (index >= 0 && index < creatures.size()) {
-            Creature removed = creatures.remove(index);
-            System.out.println(removed.getClass().getSimpleName() + " removed from the system.");
+    public void removeCreature(Scanner scanner) {
+        if (creatures.isEmpty()) {
+            System.out.println("No creatures to remove.");
+            return;
+        }
+
+        System.out.print("\nEnter the name of the creature to remove: ");
+        String name = scanner.next();
+        Creature toRemove = null;
+
+        // Search for creature by name
+        for (Creature c : creatures) {
+            if (c.getName().equalsIgnoreCase(name)) {
+                toRemove = c;
+                break;
+            }
+        }
+
+        if (toRemove != null) {
+            creatures.remove(toRemove);
+            System.out.println(toRemove.getClass().getSimpleName() + " named \"" + name + "\" removed!");
         } else {
-            System.out.println("Invalid index. No creature removed.");
+            System.out.println("No creature found with the name \"" + name + "\". Returning to main menu.");
         }
     }
 

@@ -1,6 +1,7 @@
 package creatureLibrary;
 
 public abstract class Creature {
+    protected String name;
 	protected boolean canFly;
 	protected int health;
 	protected int speed;
@@ -8,7 +9,7 @@ public abstract class Creature {
 	protected String[] resistances;
 	protected String[] vulnerabilities;
 	
-	Creature(int health, int speed, String elementType){
+	Creature(String name, int health, int speed, String elementType){
 
 		this.health = health;
 		this.speed = speed;
@@ -70,6 +71,10 @@ public abstract class Creature {
 
     public String getElementType(){
         return this.elementType;
+    }
+
+    public String getName(){
+        return this.name;
     }
 	
 	abstract void move();

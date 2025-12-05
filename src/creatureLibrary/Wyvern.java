@@ -2,9 +2,10 @@ package creatureLibrary;
 
 public class Wyvern extends Creature implements Ability {
 
-    public Wyvern(int health, int speed, String elementType) {
-        super(health, speed, elementType);
+    public Wyvern(String name, int health, int speed, String elementType) {
+        super(name, health, speed, elementType);
 
+        this.name = name;
         this.canFly = true;
         this.resistances = new String[] { "fire", "wind" };
         this.vulnerabilities = new String[] { "ice", "earth" };

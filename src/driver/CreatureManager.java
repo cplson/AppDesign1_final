@@ -48,7 +48,7 @@ public class CreatureManager {
 
                 case 2:
                     System.out.println("You chose: Remove Creature");
-                    // TODO: remove creature logic
+                    creatureSystem.removeCreature(scanner);
                     break;
 
                 case 3:

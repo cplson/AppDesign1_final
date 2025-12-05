@@ -2,9 +2,10 @@ package creatureLibrary;
 
 public class Golem extends Creature implements Ability {
 
-    public Golem(int health, int speed, String elementType) {
-        super(health, speed, elementType);
+    public Golem(String name, int health, int speed, String elementType) {
+        super(name, health, speed, elementType);
 
+        this.name = name;
         this.canFly = false;
         this.resistances = new String[] { "physical", "earth" };
         this.vulnerabilities = new String[] { "water", "lightning" };

@@ -2,9 +2,10 @@ package creatureLibrary;
 
 public class Basilisk extends Creature implements Ability {
 
-    public Basilisk(int health, int speed, String elementType) {
-        super(health, speed, elementType);
+    public Basilisk(String name, int health, int speed, String elementType) {
+        super(name, health, speed, elementType);
 
+        this.name = name;
         this.canFly = false;
         this.resistances = new String[] { "poison", "earth" };
         this.vulnerabilities = new String[] { "ice", "holy" };

@@ -2,9 +2,10 @@ package creatureLibrary;
 
 public class Hydra extends Creature implements Ability {
 
-    public Hydra(int health, int speed, String elementType) {
-        super(health, speed, elementType);
+    public Hydra(String name, int health, int speed, String elementType) {
+        super(name, health, speed, elementType);
 
+        this.name = name;
         this.canFly = false;
         this.resistances = new String[] { "water", "poison" };
         this.vulnerabilities = new String[] { "fire", "lightning" };
