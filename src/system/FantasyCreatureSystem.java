@@ -2,6 +2,7 @@ package system;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import creatureLibrary.*;
 
 public class FantasyCreatureSystem {
@@ -15,10 +16,74 @@ public class FantasyCreatureSystem {
     }
 
     // 1. Add Creature
-    public void addCreature(Creature creature) {
-        creatures.add(creature);
-        System.out.println(creature.getClass().getSimpleName() + " added to the system.");
+    public void addCreature(Scanner scanner) {
+        int choice = 0;
+
+        // Creature type selection
+        while (true) {
+            System.out.println("\n--- Select Creature Type ---");
+            System.out.println("1. Hydra");
+            System.out.println("2. Basilisk");
+            System.out.println("3. Golem");
+            System.out.print("Enter choice (1-3): ");
+
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // consume newline
+
+                if (choice >= 1 && choice <= 3) {
+                    break;
+                } else {
+                    System.out.println("Invalid choice. Enter 1, 2, or 3.");
+                }
+            } else {
+                System.out.println("Invalid input. Enter a number.");
+                scanner.nextLine(); // consume invalid input
+            }
+        }
+
+        // --- Prompt for creature properties ---
+        int health = promptForInt(scanner, "Enter health (integer): ");
+        int speed = promptForInt(scanner, "Enter speed (integer): ");
+        System.out.print("Enter element type (e.g., Fire, Water): ");
+        String elementType = scanner.nextLine();
+
+        // --- Create the chosen creature ---
+        Creature newCreature = null;
+
+        switch (choice) {
+            case 1:
+                newCreature = new Hydra(health, speed, elementType);
+                break;
+            case 2:
+                newCreature = new Basilisk(health, speed, elementType);
+                break;
+            case 3:
+                newCreature = new Golem(health, speed, elementType);
+                break;
+        }
+
+        creatures.add(newCreature);
+        System.out.println(newCreature.getClass().getSimpleName() + " added to the system!");
     }
+
+    // Helper method to prompt for integers with validation
+    private int promptForInt(Scanner scanner, String message) {
+        int value = 0;
+        while (true) {
+            System.out.print(message);
+            if (scanner.hasNextInt()) {
+                value = scanner.nextInt();
+                scanner.nextLine(); // consume newline
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter an integer.");
+                scanner.nextLine(); // consume invalid input
+            }
+        }
+        return value;
+    }
+
 
     // 2. Remove Creature by index (or name, you can adjust)
     public void removeCreature(int index) {

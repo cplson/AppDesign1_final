@@ -1,15 +1,12 @@
 package driver;
 import creatureLibrary.*;
+import system.FantasyCreatureSystem;
 import java.util.Scanner;
 
 public class CreatureManager {
 
 	static void main(String[] args) {
-//		Golem creature = new Golem(100, 20, "fire");
-//		Golem golem = new Golem();
-//		golem.displayInfo();
-//		creature.displayInfo();
-
+        FantasyCreatureSystem creatureSystem = new FantasyCreatureSystem();
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
 
@@ -46,7 +43,7 @@ public class CreatureManager {
             switch (choice) {
                 case 1:
                     System.out.println("You chose: Add Creature");
-                    // TODO: add creature logic
+                    creatureSystem.addCreature(scanner);
                     break;
 
                 case 2:
