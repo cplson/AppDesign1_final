@@ -15,7 +15,7 @@ public abstract class Creature {
 		this.elementType = elementType;
 	}
 	
-	Creature(){};
+	Creature(){}
 	
 	public void displayInfo() {
 	    System.out.println("=== Creature Info ===");
